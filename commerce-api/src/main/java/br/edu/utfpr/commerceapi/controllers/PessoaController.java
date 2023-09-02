@@ -1,0 +1,74 @@
+package br.edu.utfpr.commerceapi.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import br.edu.utfpr.commerceapi.models.Pessoa;
+import br.edu.utfpr.commerceapi.repositories.PessoaRepository;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/pessoa")
+public class PessoaController {
+
+    @Autowired
+    private PessoaRepository pessoaRepository;
+
+    @GetMapping({ "", "/" })
+    public ResponseEntity<List<Pessoa>> getAllPessoas() {
+        List<Pessoa> pessoas = pessoaRepository.findAll();
+
+        return new ResponseEntity<>(pessoas, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getPessoaById(@PathVariable UUID id) {
+        Optional<Pessoa> pessoa = pessoaRepository.findById(id);
+
+        if (pessoa.isPresent()) {
+            return ResponseEntity.ok().body(pessoa.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("")
+    public ResponseEntity<Pessoa> createPessoa(@RequestBody Pessoa pessoa) {
+        pessoa.setNascimento(LocalDateTime.now());
+        Pessoa savedPessoa = pessoaRepository.save(pessoa);
+
+        return new ResponseEntity<>(savedPessoa, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Pessoa> updatePessoa(@PathVariable UUID id, @RequestBody Pessoa updatedPessoa) {
+        Optional<Pessoa> existingPessoa = pessoaRepository.findById(id);
+
+        if (existingPessoa.isPresent()) {
+            Pessoa pessoa = existingPessoa.get();
+            pessoa.setNome(updatedPessoa.getNome());
+            pessoa.setEmail(updatedPessoa.getEmail());
+            pessoaRepository.save(pessoa);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePessoa(@PathVariable UUID id) {
+        Optional<Pessoa> pessoa = pessoaRepository.findById(id);
+
+        if (pessoa.isPresent()) {
+            pessoaRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+}
