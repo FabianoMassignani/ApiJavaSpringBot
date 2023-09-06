@@ -27,6 +27,15 @@ public class Pessoa extends BaseEntity {
     @Column(name = "nome", length = 150, nullable = false)
     private String nome;
 
+    @Column(name = "cpf")
+    private String cpf;
+
+    @Column(name = "cnpj")
+    private String cnpj;
+
+    @Column(name = "isPessoaFisica")
+    private Boolean isPessoaFisica;
+
     @Column(name = "email", length = 150, nullable = false, unique = true)
     private String email;
 
