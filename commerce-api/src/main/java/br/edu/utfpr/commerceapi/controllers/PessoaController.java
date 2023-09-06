@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import br.edu.utfpr.commerceapi.models.Pessoa;
+
+import br.edu.utfpr.commerceapi.dto.PessoaDTO;
 import br.edu.utfpr.commerceapi.repositories.PessoaRepository;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,15 +20,15 @@ public class PessoaController {
     private PessoaRepository pessoaRepository;
 
     @GetMapping({ "", "/" })
-    public ResponseEntity<List<Pessoa>> getAllPessoas() {
-        List<Pessoa> pessoas = pessoaRepository.findAll();
+    public ResponseEntity<List<PessoaDTO>> getAllPessoas() {
+        List<PessoaDTO> pessoas = pessoaRepository.findAll();
 
         return new ResponseEntity<>(pessoas, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getPessoaById(@PathVariable UUID id) {
-        Optional<Pessoa> pessoa = pessoaRepository.findById(id);
+        Optional<PessoaDTO> pessoa = pessoaRepository.findById(id);
 
         if (pessoa.isPresent()) {
             return ResponseEntity.ok().body(pessoa.get());
@@ -37,19 +38,19 @@ public class PessoaController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Pessoa> createPessoa(@RequestBody Pessoa pessoa) {
+    public ResponseEntity<PessoaDTO> createPessoa(@RequestBody PessoaDTO pessoa) {
         pessoa.setNascimento(LocalDateTime.now());
-        Pessoa savedPessoa = pessoaRepository.save(pessoa);
+        PessoaDTO savedPessoa = pessoaRepository.save(pessoa);
 
         return new ResponseEntity<>(savedPessoa, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pessoa> updatePessoa(@PathVariable UUID id, @RequestBody Pessoa updatedPessoa) {
-        Optional<Pessoa> existingPessoa = pessoaRepository.findById(id);
+    public ResponseEntity<PessoaDTO> updatePessoa(@PathVariable UUID id, @RequestBody PessoaDTO updatedPessoa) {
+        Optional<PessoaDTO> existingPessoa = pessoaRepository.findById(id);
 
         if (existingPessoa.isPresent()) {
-            Pessoa pessoa = existingPessoa.get();
+            PessoaDTO pessoa = existingPessoa.get();
             pessoa.setNome(updatedPessoa.getNome());
             pessoa.setEmail(updatedPessoa.getEmail());
             pessoaRepository.save(pessoa);
@@ -61,7 +62,7 @@ public class PessoaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePessoa(@PathVariable UUID id) {
-        Optional<Pessoa> pessoa = pessoaRepository.findById(id);
+        Optional<PessoaDTO> pessoa = pessoaRepository.findById(id);
 
         if (pessoa.isPresent()) {
             pessoaRepository.deleteById(id);

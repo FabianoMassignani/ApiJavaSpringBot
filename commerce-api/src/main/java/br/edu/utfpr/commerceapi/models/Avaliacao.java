@@ -13,6 +13,8 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 
+import br.edu.utfpr.commerceapi.dto.PessoaDTO;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -44,5 +46,5 @@ public class Avaliacao extends BaseEntity {
     // associadas a um cliente.
     @ManyToOne
     @JoinColumn(name = "cliente_id")
-    private Pessoa cliente;
+    private PessoaDTO cliente;
 }

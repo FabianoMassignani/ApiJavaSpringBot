@@ -1,6 +1,8 @@
 package br.edu.utfpr.commerceapi.models;
 
 import java.time.LocalDate;
+
+import br.edu.utfpr.commerceapi.dto.PessoaDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -32,7 +34,7 @@ public class Reserva extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "pessoa_id")
-    private Pessoa cliente;
+    private PessoaDTO cliente;
 
     // Um cliente (pessoa) pode fazer muitas reservas, mas cada reserva pertence a
     // um único cliente. Portanto, é um relacionamento Many-to-One, onde várias

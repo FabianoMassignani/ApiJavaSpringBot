@@ -6,8 +6,11 @@ GET {{URL_BASE}}/pessoa
 
 ### cadastrar pessoa
 POST {{URL_BASE}}/pessoa
-
-{
+Content-Type: 'application/json'
+{   
+    "nome":"ze Pitanga",
+    "mail":"ze@hotmail.com",
+    "nascimento":"16061996"
 
 
 }
