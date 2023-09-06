@@ -63,22 +63,24 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PessoaDTO> updatePessoa(@PathVariable UUID id, @RequestBody PessoaDTO updatedPessoa) {
+    public ResponseEntity<Object> updatePessoa(@PathVariable UUID id, @RequestBody PessoaDTO updatedPessoa) {
 
         try {
             Optional<PessoaDTO> existingPessoa = pessoaRepository.findById(id);
 
             if (existingPessoa.isPresent()) {
                 PessoaDTO pessoa = existingPessoa.get();
+
                 pessoa.setNome(updatedPessoa.getNome());
                 pessoa.setEmail(updatedPessoa.getEmail());
+                
                 pessoaRepository.save(pessoa);
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            return new ResponseEntity<PessoaDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
