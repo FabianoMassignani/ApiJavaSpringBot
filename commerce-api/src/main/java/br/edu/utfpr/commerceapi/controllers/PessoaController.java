@@ -22,10 +22,12 @@ public class PessoaController {
     @Autowired
     private PessoaRepository pessoaRepository;
 
+    // Pegar com paginacao
+
     @GetMapping({ "", "/" })
-    public ResponseEntity<List<PessoaDTO>> getAllPessoas() {
+    public ResponseEntity<List<Pessoa>> getAllPessoas() {
         try {
-            List<PessoaDTO> pessoas = pessoaRepository.findAll();
+            List<Pessoa> pessoas = pessoaRepository.findAll();
 
             return new ResponseEntity<>(pessoas, HttpStatus.OK);
         } catch (Exception e) {
@@ -36,7 +38,7 @@ public class PessoaController {
     @GetMapping("/{id}")
     public ResponseEntity<Object> getPessoaById(@PathVariable UUID id) {
         try {
-            Optional<PessoaDTO> pessoa = pessoaRepository.findById(id);
+            Optional<Pessoa> pessoa = pessoaRepository.findById(id);
 
             if (pessoa.isPresent()) {
                 return ResponseEntity.ok().body(pessoa.get());
@@ -50,10 +52,10 @@ public class PessoaController {
     }
 
     @PostMapping("")
-    public ResponseEntity<PessoaDTO> createPessoa(@RequestBody PessoaDTO pessoa) {
+    public ResponseEntity<Object> createPessoa(@RequestBody Pessoa pessoa) {
         try {
             pessoa.setNascimento(LocalDateTime.now());
-            PessoaDTO savedPessoa = pessoaRepository.save(pessoa);
+            Pessoa savedPessoa = pessoaRepository.save(pessoa);
 
             return new ResponseEntity<>(savedPessoa, HttpStatus.CREATED);
 
@@ -63,17 +65,19 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updatePessoa(@PathVariable UUID id, @RequestBody PessoaDTO updatedPessoa) {
+    public ResponseEntity<Object> updatePessoa(@PathVariable UUID id, @RequestBody Pessoa updatedPessoa) {
 
         try {
-            Optional<PessoaDTO> existingPessoa = pessoaRepository.findById(id);
+            var existingPessoa = pessoaRepository.findById(id);
 
             if (existingPessoa.isPresent()) {
-                PessoaDTO pessoa = existingPessoa.get();
+                Pessoa pessoa = existingPessoa.get();
 
                 pessoa.setNome(updatedPessoa.getNome());
                 pessoa.setEmail(updatedPessoa.getEmail());
-                
+                pessoa.setCreatedAt(null);
+                pessoa.setUpdatedAt(null);
+
                 pessoaRepository.save(pessoa);
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
@@ -87,7 +91,7 @@ public class PessoaController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletePessoa(@PathVariable UUID id) {
         try {
-            Optional<PessoaDTO> pessoa = pessoaRepository.findById(id);
+            Optional<Pessoa> pessoa = pessoaRepository.findById(id);
 
             if (pessoa.isPresent()) {
                 pessoaRepository.deleteById(id);
