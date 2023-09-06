@@ -1,11 +1,13 @@
 package br.edu.utfpr.commerceapi.controllers;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.edu.utfpr.commerceapi.dto.PessoaDTO;
+import br.edu.utfpr.commerceapi.models.Pessoa;
 import br.edu.utfpr.commerceapi.repositories.PessoaRepository;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -36,6 +38,23 @@ public class PessoaController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // @PostMapping("")
+    // public ResponseEntity<Object> create(@RequestBody PessoaDTO personDTO) {
+    // var pes = new Pessoa(); // Pessoa para persistir no DB
+    // BeanUtils.copyProperties(personDTO, pes);
+
+    // try {
+    // return ResponseEntity
+    // .status(HttpStatus.CREATED)
+    // .body(pessoaRepository.save(pes));
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // return ResponseEntity
+    // .status(HttpStatus.BAD_REQUEST)
+    // .body("Falha ao criar pessoa");
+    // }
+    // }
 
     @PostMapping("")
     public ResponseEntity<PessoaDTO> createPessoa(@RequestBody PessoaDTO pessoa) {

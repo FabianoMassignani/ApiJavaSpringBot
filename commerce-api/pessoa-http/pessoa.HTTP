@@ -10,7 +10,7 @@ Content-Type: 'application/json'
 {   
     "nome":"ze Pitanga",
     "mail":"ze@hotmail.com",
-    "nascimento":"16061996"
+    "nascimento":"1960-01-01T00:00"
 
 
 }
