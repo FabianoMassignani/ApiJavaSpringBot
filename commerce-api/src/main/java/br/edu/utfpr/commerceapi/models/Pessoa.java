@@ -30,6 +30,12 @@ public class Pessoa extends BaseEntity {
     @Column(name = "email", length = 150, nullable = false, unique = true)
     private String email;
 
+    @Column(name = "cpf")
+    private String cpf;
+
+    @Column(name = "cnpj")
+    private String cnpj;
+
     @Column(name = "nascimento")
     private LocalDateTime nascimento;
 
@@ -39,8 +45,8 @@ public class Pessoa extends BaseEntity {
     @Column(name = "telefone", length = 150, nullable = false)
     private String telefone;
 
-    @Column(name = "perfil", length = 150, nullable = false)
-    private String perfil; // Pode ser "Cliente" ou "Agência De Viagens"
+    @Column(name = "isPessoaFisica")
+    private Boolean isPessoaFisica;
 
     @OneToMany(mappedBy = "cliente")
     private List<Reserva> reservas;
