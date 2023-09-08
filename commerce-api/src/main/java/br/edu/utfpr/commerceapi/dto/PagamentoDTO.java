@@ -2,7 +2,6 @@ package br.edu.utfpr.commerceapi.dto;
 
 import br.edu.utfpr.commerceapi.models.Reserva;
 import java.time.LocalDateTime;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,15 +13,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class PessoaDTO {
+public class PagamentoDTO {
 
-  private String nome;
-  private String email;
-  private LocalDateTime nascimento;
-  private String cpf;
-  private String cnpj;
-  private String password;
-  private String telefone;
-  private Boolean isPessoaFisica;
-  private List<Reserva> reservas;
+  private double valor;
+  private LocalDateTime dataPagamento;
+  private String status;
+  private String metodoPagamento;
+  private Reserva reserva;
 }
