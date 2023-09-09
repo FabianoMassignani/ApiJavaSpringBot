@@ -1,6 +1,5 @@
 package br.edu.utfpr.commerceapi.models;
 
-import br.edu.utfpr.commerceapi.dto.PessoaDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -37,7 +36,7 @@ public class Reserva extends BaseEntity {
 
   @ManyToOne
   @JoinColumn(name = "pessoa_id")
-  private PessoaDTO cliente;
+  private Pessoa cliente;
 
   // Um passeio específico pode ter muitas reservas, mas cada reserva está
   // associada a um único passeio. Portanto, também é um relacionamento
