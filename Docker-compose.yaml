@@ -1,0 +1,18 @@
+version: '5'
+
+services:
+  mariaDB:
+    container_name: mariadb
+    image: mariadb:latest
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_agencia
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    
+    
+
+
