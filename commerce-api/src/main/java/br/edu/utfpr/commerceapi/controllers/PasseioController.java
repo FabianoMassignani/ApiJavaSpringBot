@@ -1,9 +1,9 @@
 package br.edu.utfpr.commerceapi.controllers;
 
 import br.edu.utfpr.commerceapi.dto.PasseioDTO;
-import br.edu.utfpr.commerceapi.dto.PessoaDTO;
+  
 import br.edu.utfpr.commerceapi.models.Passeio;
-import br.edu.utfpr.commerceapi.models.Pessoa;
+ 
 import br.edu.utfpr.commerceapi.repositories.PasseioRepository;
 import jakarta.validation.Valid;
 import java.time.LocalDateTime;
