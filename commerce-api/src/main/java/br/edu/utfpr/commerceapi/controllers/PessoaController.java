@@ -1,14 +1,25 @@
 package br.edu.utfpr.commerceapi.controllers;
 
+import br.edu.utfpr.commerceapi.dto.PessoaDTO;
 import br.edu.utfpr.commerceapi.models.Pessoa;
 import br.edu.utfpr.commerceapi.repositories.PessoaRepository;
+import jakarta.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,6 +30,18 @@ public class PessoaController {
   private PessoaRepository pessoaRepository;
 
   // Pegar com paginacao
+
+  @GetMapping("/pages")
+  public ResponseEntity<Page<Pessoa>> getAllPage(
+    @PageableDefault(
+      page = 0,
+      size = 10,
+      sort = "nome",
+      direction = Sort.Direction.ASC
+    ) Pageable pageable
+  ) {
+    return ResponseEntity.ok().body(pessoaRepository.findAll(pageable));
+  }
 
   @GetMapping({ "", "/" })
   public ResponseEntity<List<Pessoa>> getAllPessoas() {
@@ -32,9 +55,9 @@ public class PessoaController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Object> getPessoaById(@PathVariable UUID id) {
+  public ResponseEntity<Object> getPessoaById(@PathVariable String id) {
     try {
-      Optional<Pessoa> pessoa = pessoaRepository.findById(id);
+      Optional<Pessoa> pessoa = pessoaRepository.findById(UUID.fromString(id));
 
       if (pessoa.isPresent()) {
         return ResponseEntity.ok().body(pessoa.get());
@@ -47,9 +70,12 @@ public class PessoaController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Object> createPessoa(@RequestBody Pessoa pessoa) {
+  public ResponseEntity<Object> createPessoa(
+    @Valid @RequestBody PessoaDTO pessoaDTO
+  ) {
     try {
-      
+      var pessoa = new Pessoa();
+      BeanUtils.copyProperties(pessoaDTO, pessoa);
 
       pessoa.setCreatedAt(LocalDateTime.now());
       pessoa.setUpdatedAt(LocalDateTime.now());
@@ -63,34 +89,30 @@ public class PessoaController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Object> updatePessoa(
-    @PathVariable UUID id,
-    @RequestBody Pessoa updatedPessoa
+  public ResponseEntity<Object> update(
+    @PathVariable String id,
+    @RequestBody PessoaDTO personDTO
   ) {
     try {
-      var existingPessoa = pessoaRepository.findById(id);
+      Optional<Pessoa> existingPessoa = pessoaRepository.findById(
+        UUID.fromString(id)
+      );
 
       if (existingPessoa.isPresent()) {
         Pessoa pessoa = existingPessoa.get();
 
-        pessoa.setNome(updatedPessoa.getNome());
-        pessoa.setEmail(updatedPessoa.getEmail());
-        pessoa.setNascimento(updatedPessoa.getNascimento());
-        pessoa.setCpf(updatedPessoa.getCpf());
-        pessoa.setCnpj(updatedPessoa.getCnpj());
-        pessoa.setPassword(updatedPessoa.getPassword());
-        pessoa.setTelefone(updatedPessoa.getTelefone());
-        pessoa.setIsPessoaFisica(updatedPessoa.getIsPessoaFisica());
+        BeanUtils.copyProperties(personDTO, pessoa);
+
         pessoa.setUpdatedAt(LocalDateTime.now());
 
-
         pessoaRepository.save(pessoa);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<>(pessoa, HttpStatus.OK);
       } else {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
       }
     } catch (Exception e) {
-      return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -108,5 +130,24 @@ public class PessoaController {
     } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+  }
+
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  public Map<String, String> handleValidationExceptions(
+    MethodArgumentNotValidException ex
+  ) {
+    Map<String, String> errors = new HashMap<>();
+
+    ex
+      .getBindingResult()
+      .getAllErrors()
+      .forEach(error -> {
+        String fieldName = ((FieldError) error).getField();
+        String errorMessage = error.getDefaultMessage();
+        errors.put(fieldName, errorMessage);
+      });
+
+    return errors;
   }
 }
