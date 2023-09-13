@@ -3,16 +3,19 @@ package br.edu.utfpr.commerceapi.controllers;
 import br.edu.utfpr.commerceapi.dto.ReservaDTO;
 import br.edu.utfpr.commerceapi.models.Reserva;
 import br.edu.utfpr.commerceapi.repositories.ReservaRepository;
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.yaml.snakeyaml.introspector.BeanAccess;
 
 @RestController
 @RequestMapping("/reserva")
@@ -29,8 +32,8 @@ public class ReservaController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Reserva> getReservaById(@PathVariable UUID id) {
-    Optional<Reserva> reserva = reservaRepository.findById(id);
+  public ResponseEntity<Reserva> getReservaById(@PathVariable String id) {
+    Optional<Reserva> reserva = reservaRepository.findById(UUID.fromString(id));
 
     if (reserva.isPresent()) {
       return new ResponseEntity<>(reserva.get(), HttpStatus.OK);
@@ -43,13 +46,19 @@ public class ReservaController {
   public ResponseEntity<Reserva> createReserva(
     @RequestBody ReservaDTO reservaDTO
   ) {
-    var reserva = new Reserva();
+    try {
+      var reserva = new Reserva();
+      BeanUtils.copyProperties(reservaDTO, reserva);
 
-    BeanUtils.copyProperties(reservaDTO, reserva);
+      reserva.setCreatedAt(LocalDateTime.now());
+      reserva.setUpdatedAt(LocalDateTime.now());
 
-    Reserva savedReserva = reservaRepository.save(reserva);
+      Reserva savedReserva = reservaRepository.save(reserva);
 
-    return new ResponseEntity<>(savedReserva, HttpStatus.CREATED);
+      return new ResponseEntity<>(savedReserva, HttpStatus.CREATED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @PutMapping("/{id}")
@@ -80,5 +89,24 @@ public class ReservaController {
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+  }
+
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  public Map<String, String> handleValidationExceptions(
+    MethodArgumentNotValidException ex
+  ) {
+    Map<String, String> errors = new HashMap<>();
+
+    ex
+      .getBindingResult()
+      .getAllErrors()
+      .forEach(error -> {
+        String fieldName = ((FieldError) error).getField();
+        String errorMessage = error.getDefaultMessage();
+        errors.put(fieldName, errorMessage);
+      });
+
+    return errors;
   }
 }

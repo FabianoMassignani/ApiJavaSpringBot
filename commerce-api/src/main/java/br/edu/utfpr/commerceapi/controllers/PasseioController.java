@@ -1,9 +1,7 @@
 package br.edu.utfpr.commerceapi.controllers;
 
 import br.edu.utfpr.commerceapi.dto.PasseioDTO;
-  
 import br.edu.utfpr.commerceapi.models.Passeio;
- 
 import br.edu.utfpr.commerceapi.repositories.PasseioRepository;
 import jakarta.validation.Valid;
 import java.time.LocalDateTime;
@@ -29,17 +27,29 @@ public class PasseioController {
 
   @GetMapping("")
   public ResponseEntity<List<Passeio>> getAllPasseios() {
-    List<Passeio> passeios = passeioRepository.findAll();
-    return new ResponseEntity<>(passeios, HttpStatus.OK);
+    try {
+      List<Passeio> passeios = passeioRepository.findAll();
+
+      return new ResponseEntity<>(passeios, HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Passeio> getPasseioById(@PathVariable UUID id) {
-    Optional<Passeio> passeio = passeioRepository.findById(id);
-    if (passeio.isPresent()) {
-      return new ResponseEntity<>(passeio.get(), HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  public ResponseEntity<Passeio> getPasseioById(@PathVariable String id) {
+    try {
+      Optional<Passeio> passeio = passeioRepository.findById(
+        UUID.fromString(id)
+      );
+
+      if (passeio.isPresent()) {
+        return new ResponseEntity<>(passeio.get(), HttpStatus.OK);
+      } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -67,27 +77,36 @@ public class PasseioController {
     @PathVariable UUID id,
     @RequestBody Passeio updatedPasseio
   ) {
-    Optional<Passeio> existingPasseio = passeioRepository.findById(id);
+    try {
+      Optional<Passeio> existingPasseio = passeioRepository.findById(id);
 
-    if (existingPasseio.isPresent()) {
-      Passeio passeio = existingPasseio.get();
-      // Atualize os campos do passeio conforme necessário
-      // passeio.setCampo(updatedPasseio.getCampo());
-      passeioRepository.save(passeio);
-      return new ResponseEntity<>(passeio, HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      if (existingPasseio.isPresent()) {
+        Passeio passeio = existingPasseio.get();
+        // Atualize os campos do passeio conforme necessário
+        // passeio.setCampo(updatedPasseio.getCampo());
+        passeioRepository.save(passeio);
+        return new ResponseEntity<>(passeio, HttpStatus.OK);
+      } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deletePasseio(@PathVariable UUID id) {
-    Optional<Passeio> existingPasseio = passeioRepository.findById(id);
-    if (existingPasseio.isPresent()) {
-      passeioRepository.delete(existingPasseio.get());
-      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    try {
+      Optional<Passeio> existingPasseio = passeioRepository.findById(id);
+
+      if (existingPasseio.isPresent()) {
+        passeioRepository.delete(existingPasseio.get());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+      } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

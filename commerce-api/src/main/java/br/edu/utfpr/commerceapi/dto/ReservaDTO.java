@@ -20,5 +20,4 @@ public class ReservaDTO {
   private String observacao;
   private PessoaDTO cliente;
   private Passeio passeio;
-
 }
