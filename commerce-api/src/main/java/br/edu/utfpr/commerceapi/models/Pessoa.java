@@ -42,7 +42,7 @@ public class Pessoa extends BaseEntity {
     @Column(name = "password", length = 150, nullable = false)
     private String password;
 
-    @Column(name = "telefone", length = 150, nullable = false)
+    @Column(name = "telefone")
     private String telefone;
 
     @Column(name = "isPessoaFisica")

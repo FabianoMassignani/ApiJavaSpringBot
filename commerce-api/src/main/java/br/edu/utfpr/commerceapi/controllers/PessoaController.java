@@ -49,7 +49,11 @@ public class PessoaController {
   @PostMapping("")
   public ResponseEntity<Object> createPessoa(@RequestBody Pessoa pessoa) {
     try {
-      pessoa.setNascimento(LocalDateTime.now());
+      
+
+      pessoa.setCreatedAt(LocalDateTime.now());
+      pessoa.setUpdatedAt(LocalDateTime.now());
+
       Pessoa savedPessoa = pessoaRepository.save(pessoa);
 
       return new ResponseEntity<>(savedPessoa, HttpStatus.CREATED);
@@ -71,8 +75,14 @@ public class PessoaController {
 
         pessoa.setNome(updatedPessoa.getNome());
         pessoa.setEmail(updatedPessoa.getEmail());
-        pessoa.setCreatedAt(null);
-        pessoa.setUpdatedAt(null);
+        pessoa.setNascimento(updatedPessoa.getNascimento());
+        pessoa.setCpf(updatedPessoa.getCpf());
+        pessoa.setCnpj(updatedPessoa.getCnpj());
+        pessoa.setPassword(updatedPessoa.getPassword());
+        pessoa.setTelefone(updatedPessoa.getTelefone());
+        pessoa.setIsPessoaFisica(updatedPessoa.getIsPessoaFisica());
+        pessoa.setUpdatedAt(LocalDateTime.now());
+
 
         pessoaRepository.save(pessoa);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
