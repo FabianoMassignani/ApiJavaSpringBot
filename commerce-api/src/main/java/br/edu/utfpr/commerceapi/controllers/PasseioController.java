@@ -4,7 +4,6 @@ import br.edu.utfpr.commerceapi.dto.PasseioDTO;
 import br.edu.utfpr.commerceapi.models.Passeio;
 import br.edu.utfpr.commerceapi.repositories.PasseioRepository;
 import jakarta.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,9 +59,6 @@ public class PasseioController {
     try {
       var passeio = new Passeio();
       BeanUtils.copyProperties(PasseioDTO, passeio);
-
-      passeio.setCreatedAt(LocalDateTime.now());
-      passeio.setUpdatedAt(LocalDateTime.now());
 
       Passeio savedPasseio = passeioRepository.save(passeio);
 

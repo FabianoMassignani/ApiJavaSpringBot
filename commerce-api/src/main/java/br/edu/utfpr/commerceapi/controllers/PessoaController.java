@@ -4,7 +4,6 @@ import br.edu.utfpr.commerceapi.dto.PessoaDTO;
 import br.edu.utfpr.commerceapi.models.Pessoa;
 import br.edu.utfpr.commerceapi.repositories.PessoaRepository;
 import jakarta.validation.Valid;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -77,9 +76,6 @@ public class PessoaController {
     try {
       var pessoa = new Pessoa();
       BeanUtils.copyProperties(pessoaDTO, pessoa);
-
-      pessoa.setCreatedAt(LocalDateTime.now());
-      pessoa.setUpdatedAt(LocalDateTime.now());
 
       Pessoa savedPessoa = pessoaRepository.save(pessoa);
 

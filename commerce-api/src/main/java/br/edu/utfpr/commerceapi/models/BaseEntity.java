@@ -1,10 +1,10 @@
 package br.edu.utfpr.commerceapi.models;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import java.time.LocalDateTime;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,18 +14,19 @@ import lombok.ToString;
 @ToString
 @MappedSuperclass
 public class BaseEntity {
-    @Id
-    private UUID id;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+  @Id
+  private UUID id;
 
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+  @Column(name = "created_at")
+  private LocalDateTime createdAt;
 
-    public BaseEntity() {
-        this.id = UUID.randomUUID();
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
+  @Column(name = "updated_at")
+  private LocalDateTime updatedAt;
+
+  public BaseEntity() {
+    this.id = UUID.randomUUID();
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
+  }
 }

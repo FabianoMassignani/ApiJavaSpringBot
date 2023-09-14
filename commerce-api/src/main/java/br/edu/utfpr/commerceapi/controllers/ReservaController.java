@@ -3,7 +3,6 @@ package br.edu.utfpr.commerceapi.controllers;
 import br.edu.utfpr.commerceapi.dto.ReservaDTO;
 import br.edu.utfpr.commerceapi.models.Reserva;
 import br.edu.utfpr.commerceapi.repositories.ReservaRepository;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,9 +48,6 @@ public class ReservaController {
     try {
       var reserva = new Reserva();
       BeanUtils.copyProperties(reservaDTO, reserva);
-
-      reserva.setCreatedAt(LocalDateTime.now());
-      reserva.setUpdatedAt(LocalDateTime.now());
 
       Reserva savedReserva = reservaRepository.save(reserva);
 

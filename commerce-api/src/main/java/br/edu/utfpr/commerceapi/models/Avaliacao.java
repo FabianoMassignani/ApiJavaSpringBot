@@ -21,17 +21,17 @@ import lombok.ToString;
 @Table(name = "tb_avaliacao")
 public class Avaliacao extends BaseEntity {
 
-  @Column(name = "titulo", length = 150)
+  @Column(name = "titulo", length = 150, nullable = false)
   private String titulo;
 
   @Column(name = "classificacao", nullable = false)
   private int classificacao; // De 1 a 5 estrelas
 
+  @Column(name = "data_avaliacao", nullable = false)
+  private LocalDate dataAvaliacao;
+
   @Column(name = "comentario")
   private String comentario;
-
-  @Column(name = "data_avaliacao")
-  private LocalDate dataAvaliacao;
 
   // Relacionamento Many-to-One com Passeio: Várias avaliações estão associadas a
   // um passeio.

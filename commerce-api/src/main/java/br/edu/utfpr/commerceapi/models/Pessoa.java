@@ -1,13 +1,13 @@
 package br.edu.utfpr.commerceapi.models;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,31 +23,32 @@ import lombok.ToString;
 @Table(name = "tb_pessoa")
 public class Pessoa extends BaseEntity {
 
-    // @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "nome", length = 150, nullable = false)
-    private String nome;
+  // @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "nome", length = 150, nullable = false)
+  private String nome;
 
-    @Column(name = "email", length = 150, nullable = false, unique = true)
-    private String email;
+  @Column(name = "email", length = 150, nullable = false, unique = true)
+  private String email;
 
-    @Column(name = "cpf")
-    private String cpf;
+  @Column(name = "password", length = 150, nullable = false)
+  private String password;
 
-    @Column(name = "cnpj")
-    private String cnpj;
+  @Column(name = "cpf")
+  private String cpf;
 
-    @Column(name = "nascimento")
-    private LocalDateTime nascimento;
+  @Column(name = "cnpj")
+  private String cnpj;
 
-    @Column(name = "password", length = 150, nullable = false)
-    private String password;
+  @Column(name = "dataNascimento")
+  private LocalDateTime dataNascimento;
 
-    @Column(name = "telefone")
-    private String telefone;
+  @Column(name = "telefone")
+  private String telefone;
 
-    @Column(name = "isPessoaFisica")
-    private Boolean isPessoaFisica;
+  @Column(name = "isPessoaFisica")
+  private Boolean isPessoaFisica;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Reserva> reservas;
+  @OneToMany
+  @JoinColumn(name = "pessoa_id")
+  private List<Pessoa> pessoa = new ArrayList<>();
 }

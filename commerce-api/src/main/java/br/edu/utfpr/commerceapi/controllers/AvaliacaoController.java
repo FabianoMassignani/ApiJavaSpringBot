@@ -3,7 +3,6 @@ package br.edu.utfpr.commerceapi.controllers;
 import br.edu.utfpr.commerceapi.dto.AvaliacaoDTO;
 import br.edu.utfpr.commerceapi.models.Avaliacao;
 import br.edu.utfpr.commerceapi.repositories.AvaliacaoRepository;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,9 +58,6 @@ public class AvaliacaoController {
     try {
       var avaliacao = new Avaliacao();
       BeanUtils.copyProperties(avaliacaoDTO, avaliacao);
-
-      avaliacao.setCreatedAt(LocalDateTime.now());
-      avaliacao.setUpdatedAt(LocalDateTime.now());
 
       Avaliacao savedAvaliacao = avaliacaoRepository.save(avaliacao);
 

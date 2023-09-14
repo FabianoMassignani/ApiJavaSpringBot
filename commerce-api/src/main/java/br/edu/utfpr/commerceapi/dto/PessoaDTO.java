@@ -26,10 +26,11 @@ public class PessoaDTO {
   @NotBlank(message = "A senha não pode estar em branco")
   private String password;
 
-  private LocalDateTime nascimento;
+  private LocalDateTime dataNascimento;
   private String cpf;
   private String cnpj;
   private String telefone;
   private Boolean isPessoaFisica;
+
   private List<Reserva> reservas;
 }

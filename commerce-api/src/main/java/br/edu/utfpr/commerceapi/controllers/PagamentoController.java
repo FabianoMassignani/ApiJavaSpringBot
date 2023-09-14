@@ -3,7 +3,6 @@ package br.edu.utfpr.commerceapi.controllers;
 import br.edu.utfpr.commerceapi.dto.PagamentoDTO;
 import br.edu.utfpr.commerceapi.models.Pagamento;
 import br.edu.utfpr.commerceapi.repositories.PagamentoRepository;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,9 +58,6 @@ public class PagamentoController {
     try {
       var pagamento = new Pagamento();
       BeanUtils.copyProperties(pagamentoDTO, pagamento);
-
-      pagamento.setCreatedAt(LocalDateTime.now());
-      pagamento.setUpdatedAt(LocalDateTime.now());
 
       Pagamento savedPagamento = pagamentoRepository.save(pagamento);
 

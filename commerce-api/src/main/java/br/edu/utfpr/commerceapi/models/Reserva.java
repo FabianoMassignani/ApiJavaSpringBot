@@ -21,10 +21,10 @@ import lombok.ToString;
 @Table(name = "tb_reserva")
 public class Reserva extends BaseEntity {
 
-  @Column(name = "data_reserva")
+  @Column(name = "data_reserva", nullable = false)
   private LocalDate dataReserva;
 
-  @Column(name = "quantidade_pessoas")
+  @Column(name = "quantidade_pessoas", nullable = false)
   private int quantidadePessoas;
 
   @Column(name = "observacao")
