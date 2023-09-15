@@ -30,17 +30,9 @@ public class Reserva extends BaseEntity {
   @Column(name = "observacao")
   private String observacao;
 
-  // Um cliente (pessoa) pode fazer muitas reservas, mas cada reserva pertence a
-  // um único cliente. Portanto, é um relacionamento Many-to-One, onde várias
-  // reservas são feitas por um único cliente.
-
   @ManyToOne
   @JoinColumn(name = "pessoa_id")
   private Pessoa cliente;
-
-  // Um passeio específico pode ter muitas reservas, mas cada reserva está
-  // associada a um único passeio. Portanto, também é um relacionamento
-  // Many-to-One, onde várias reservas podem ser feitas para o mesmo passeio.
 
   @ManyToOne
   @JoinColumn(name = "passeio_id")

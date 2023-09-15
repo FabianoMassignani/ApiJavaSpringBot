@@ -33,14 +33,10 @@ public class Avaliacao extends BaseEntity {
   @Column(name = "comentario")
   private String comentario;
 
-  // Relacionamento Many-to-One com Passeio: Várias avaliações estão associadas a
-  // um passeio.
   @ManyToOne
   @JoinColumn(name = "passeio_id")
   private Passeio passeio;
 
-  // Relacionamento Many-to-One com Pessoa (cliente): Várias avaliações estão
-  // associadas a um cliente.
   @ManyToOne
   @JoinColumn(name = "cliente_id")
   private Pessoa cliente;

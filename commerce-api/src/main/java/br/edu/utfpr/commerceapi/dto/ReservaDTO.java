@@ -17,6 +17,7 @@ import lombok.ToString;
 @ToString
 public class ReservaDTO {
 
+
   @NotBlank(message = "O data da reserva não pode estar em branco")
   private LocalDate dataReserva;
 

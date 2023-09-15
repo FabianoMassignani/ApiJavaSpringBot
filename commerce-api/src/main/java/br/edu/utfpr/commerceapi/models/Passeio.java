@@ -58,13 +58,10 @@ public class Passeio extends BaseEntity {
   @Column(name = "observacao")
   private String observacao;
 
-  // Relacionamento One-to-Many com Reserva: Um passeio pode ter muitas reservas.
   @OneToMany
-  @JoinColumn(name = "passeio_id")
+  @JoinColumn(name = "reserva_id")
   private List<Reserva> reservas = new ArrayList<>();
 
-  // Relacionamento One-to-Many com Avaliacao: Um passeio pode ter muitas
-  // avaliações.
   @OneToMany
   @JoinColumn(name = "avaliacao_id")
   private List<Avaliacao> avaliacoes = new ArrayList<>();

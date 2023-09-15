@@ -33,8 +33,6 @@ public class Pagamento extends BaseEntity {
   @Column(name = "metodo_pagamento", length = 150, nullable = false)
   private String metodoPagamento; // Adicionado campo para armazenar o método de pagamento utilizado
 
-  // Relacionamento Many-to-One com Reserva: Vários pagamentos estão associados a
-  // uma reserva.
   @ManyToOne
   @JoinColumn(name = "reserva_id")
   private Reserva reserva;

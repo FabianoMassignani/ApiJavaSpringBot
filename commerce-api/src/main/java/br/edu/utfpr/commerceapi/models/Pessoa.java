@@ -2,12 +2,8 @@ package br.edu.utfpr.commerceapi.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,10 +41,6 @@ public class Pessoa extends BaseEntity {
   @Column(name = "telefone")
   private String telefone;
 
-  @Column(name = "isPessoaFisica")
+  @Column(name = "isPessoaFisica", columnDefinition = "boolean default false")
   private Boolean isPessoaFisica;
-
-  @OneToMany
-  @JoinColumn(name = "pessoa_id")
-  private List<Pessoa> pessoa = new ArrayList<>();
 }
