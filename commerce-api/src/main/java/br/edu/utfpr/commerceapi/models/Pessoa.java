@@ -2,8 +2,11 @@ package br.edu.utfpr.commerceapi.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,4 +46,10 @@ public class Pessoa extends BaseEntity {
 
   @Column(name = "isPessoaFisica", columnDefinition = "boolean default false")
   private Boolean isPessoaFisica;
+
+  @ManyToMany(mappedBy = "pessoas")
+  private List<Reserva> reservas;
+
+  @OneToMany(mappedBy = "pessoa")
+  private List<Avaliacao> avaliacoes;
 }

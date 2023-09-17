@@ -3,9 +3,13 @@ package br.edu.utfpr.commerceapi.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,11 +34,18 @@ public class Reserva extends BaseEntity {
   @Column(name = "observacao")
   private String observacao;
 
-  @ManyToOne
-  @JoinColumn(name = "pessoa_id")
-  private Pessoa cliente;
+  @ManyToMany
+  @JoinTable(
+    name = "pessoa_reserva",
+    joinColumns = @JoinColumn(name = "reserva_id"),
+    inverseJoinColumns = @JoinColumn(name = "pessoa_id")
+  )
+  private List<Pessoa> pessoas;
 
   @ManyToOne
   @JoinColumn(name = "passeio_id")
   private Passeio passeio;
+
+  @OneToMany(mappedBy = "reserva")
+  private List<Pagamento> pagamentos;
 }

@@ -2,10 +2,8 @@ package br.edu.utfpr.commerceapi.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -58,11 +56,9 @@ public class Passeio extends BaseEntity {
   @Column(name = "observacao")
   private String observacao;
 
-  @OneToMany
-  @JoinColumn(name = "reserva_id")
-  private List<Reserva> reservas = new ArrayList<>();
+  @OneToMany(mappedBy = "passeio")
+  private List<Reserva> reservas;
 
-  @OneToMany
-  @JoinColumn(name = "avaliacao_id")
-  private List<Avaliacao> avaliacoes = new ArrayList<>();
+  @OneToMany(mappedBy = "passeio")
+  private List<Avaliacao> avaliacoes;
 }

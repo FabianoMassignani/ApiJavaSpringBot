@@ -38,6 +38,6 @@ public class Avaliacao extends BaseEntity {
   private Passeio passeio;
 
   @ManyToOne
-  @JoinColumn(name = "cliente_id")
-  private Pessoa cliente;
+  @JoinColumn(name = "pessoa_id")  
+  private Pessoa pessoa;  
 }
