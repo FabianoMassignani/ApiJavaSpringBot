@@ -13,4 +13,18 @@ services:
       MYSQL_DATABASE: db_agencia
     volumes:
       - ./mariadb:/var/lib/mysql
+    # networks:
+    #   - backend
+  # commerce-api:
+  #   name: commerce-api
+  #   build: .
+  #   container_name: commerce-api
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+    
+
+
+
+
 
