@@ -1,13 +1,18 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "java",
-            "name": "start commerce-api",
-            "request": "launch",
-            "mainClass": "br.edu.utfpr.commerceapi.CommerceApiApplication",
-            "projectName": "commerce-api"
-        }
-        
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "start commerce-api",
+      "request": "launch",
+      "mainClass": "br.edu.utfpr.commerceapi.CommerceApiApplication",
+      "projectName": "commerce-api"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "start node-api",
+      "program": "${workspaceFolder}/node-api/app.js"
+    }
+  ]
 }

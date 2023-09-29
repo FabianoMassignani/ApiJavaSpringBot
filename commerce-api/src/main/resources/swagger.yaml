@@ -1,0 +1,1071 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /reserva/{id}:
+    get:
+      tags:
+        - reserva-controller
+      operationId: getReservaById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Reserva'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    put:
+      tags:
+        - reserva-controller
+      operationId: updateReserva
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reserva'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Reserva'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    delete:
+      tags:
+        - reserva-controller
+      operationId: deleteReserva
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /pessoa/{id}:
+    get:
+      tags:
+        - pessoa-controller
+      operationId: getPessoaById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    put:
+      tags:
+        - pessoa-controller
+      operationId: update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PessoaDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    delete:
+      tags:
+        - pessoa-controller
+      operationId: deletePessoa
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /passeio/{id}:
+    get:
+      tags:
+        - passeio-controller
+      operationId: getPasseioById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Passeio'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    put:
+      tags:
+        - passeio-controller
+      operationId: updatePasseio
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Passeio'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Passeio'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    delete:
+      tags:
+        - passeio-controller
+      operationId: deletePasseio
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /pagamento/{id}:
+    get:
+      tags:
+        - pagamento-controller
+      operationId: getPagamentoById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Pagamento'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    put:
+      tags:
+        - pagamento-controller
+      operationId: updatePagamento
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pagamento'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Pagamento'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    delete:
+      tags:
+        - pagamento-controller
+      operationId: deletePagamento
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /avaliacao/{id}:
+    put:
+      tags:
+        - avaliacao-controller
+      operationId: updateAvaliacao
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Avaliacao'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Avaliacao'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    delete:
+      tags:
+        - avaliacao-controller
+      operationId: deleteAvaliacao
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /reserva:
+    get:
+      tags:
+        - reserva-controller
+      operationId: getAllReservas
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reserva'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    post:
+      tags:
+        - reserva-controller
+      operationId: createReserva
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservaDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Reserva'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /pessoa:
+    get:
+      tags:
+        - pessoa-controller
+      operationId: getAllPessoas_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pessoa'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    post:
+      tags:
+        - pessoa-controller
+      operationId: createPessoa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PessoaDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /passeio:
+    get:
+      tags:
+        - passeio-controller
+      operationId: getAllPasseios
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Passeio'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    post:
+      tags:
+        - passeio-controller
+      operationId: createPessoa_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasseioDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /pagamento:
+    get:
+      tags:
+        - pagamento-controller
+      operationId: getAllPagamentos
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pagamento'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    post:
+      tags:
+        - pagamento-controller
+      operationId: createPagamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PagamentoDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Pagamento'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /avaliacao:
+    get:
+      tags:
+        - avaliacao-controller
+      operationId: getAllAvaliacoes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Avaliacao'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+    post:
+      tags:
+        - avaliacao-controller
+      operationId: createAvaliacao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AvaliacaoDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Avaliacao'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /pessoa/pages:
+    get:
+      tags:
+        - pessoa-controller
+      operationId: getAllPage
+      parameters:
+        - name: pageable
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Pageable'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagePessoa'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /pessoa/:
+    get:
+      tags:
+        - pessoa-controller
+      operationId: getAllPessoas
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pessoa'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /avaliacao/id:
+    get:
+      tags:
+        - avaliacao-controller
+      operationId: getAvaliacaoById
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Avaliacao'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+components:
+  schemas:
+    Avaliacao:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        titulo:
+          type: string
+        classificacao:
+          type: integer
+          format: int32
+        dataAvaliacao:
+          type: string
+          format: date
+        comentario:
+          type: string
+        passeio:
+          $ref: '#/components/schemas/Passeio'
+        pessoa:
+          $ref: '#/components/schemas/Pessoa'
+    Pagamento:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        valor:
+          type: number
+          format: double
+        dataPagamento:
+          type: string
+          format: date-time
+        status:
+          type: string
+        metodoPagamento:
+          type: string
+        reserva:
+          $ref: '#/components/schemas/Reserva'
+    Passeio:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        nome:
+          type: string
+        descricao:
+          type: string
+        imagem:
+          type: string
+        ativo:
+          type: boolean
+        valor:
+          type: number
+          format: double
+        origem:
+          type: string
+        destino:
+          type: string
+        itinerario:
+          type: string
+        dataHoraSaida:
+          type: string
+        dataHoraRetorno:
+          type: string
+        quantidadeMaximaPessoas:
+          type: integer
+          format: int32
+        observacao:
+          type: string
+        reservas:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reserva'
+        avaliacoes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Avaliacao'
+    Pessoa:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        nome:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        cpf:
+          type: string
+        cnpj:
+          type: string
+        dataNascimento:
+          type: string
+          format: date-time
+        telefone:
+          type: string
+        isPessoaFisica:
+          type: boolean
+        reservas:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reserva'
+        avaliacoes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Avaliacao'
+    Reserva:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        dataReserva:
+          type: string
+          format: date
+        quantidadePessoas:
+          type: integer
+          format: int32
+        observacao:
+          type: string
+        pessoas:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pessoa'
+        passeio:
+          $ref: '#/components/schemas/Passeio'
+        pagamentos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pagamento'
+    PessoaDTO:
+      required:
+        - email
+        - nome
+        - password
+      type: object
+      properties:
+        nome:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        dataNascimento:
+          type: string
+          format: date-time
+        cpf:
+          type: string
+        cnpj:
+          type: string
+        telefone:
+          type: string
+        isPessoaFisica:
+          type: boolean
+        reservas:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reserva'
+    ReservaDTO:
+      required:
+        - cliente
+        - dataReserva
+        - passeio
+        - quantidadePessoas
+      type: object
+      properties:
+        dataReserva:
+          type: string
+          format: date
+        quantidadePessoas:
+          type: integer
+          format: int32
+        observacao:
+          type: string
+        passeio:
+          $ref: '#/components/schemas/Passeio'
+        cliente:
+          $ref: '#/components/schemas/Pessoa'
+    PasseioDTO:
+      required:
+        - ativo
+        - dataHoraRetorno
+        - dataHoraSaida
+        - descricao
+        - destino
+        - nome
+        - origem
+        - quantidadeMaximaPessoas
+        - valor
+      type: object
+      properties:
+        nome:
+          type: string
+        descricao:
+          type: string
+        imagem:
+          type: string
+        ativo:
+          type: boolean
+        valor:
+          type: number
+          format: double
+        origem:
+          type: string
+        destino:
+          type: string
+        itinerario:
+          type: string
+        dataHoraSaida:
+          type: string
+        dataHoraRetorno:
+          type: string
+        quantidadeMaximaPessoas:
+          type: integer
+          format: int32
+        observacao:
+          type: string
+        reservas:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reserva'
+        avaliacoes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Avaliacao'
+    PagamentoDTO:
+      required:
+        - dataPagamento
+        - metodoPagamento
+        - pessoa
+        - reserva
+        - status
+        - valor
+      type: object
+      properties:
+        valor:
+          type: number
+          format: double
+        dataPagamento:
+          type: string
+          format: date-time
+        status:
+          type: string
+        metodoPagamento:
+          type: string
+        reserva:
+          $ref: '#/components/schemas/Reserva'
+        pessoa:
+          $ref: '#/components/schemas/Pessoa'
+    AvaliacaoDTO:
+      required:
+        - classificacao
+        - cliente
+        - dataAvaliacao
+        - passeio
+        - titulo
+      type: object
+      properties:
+        titulo:
+          type: string
+        classificacao:
+          type: integer
+          format: int32
+        dataAvaliacao:
+          type: string
+          format: date
+        comentario:
+          type: string
+        passeio:
+          $ref: '#/components/schemas/Passeio'
+        cliente:
+          $ref: '#/components/schemas/Pessoa'
+    Pageable:
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          minimum: 1
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            type: string
+    PagePessoa:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pessoa'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        empty:
+          type: boolean
+    PageableObject:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        unpaged:
+          type: boolean
+        paged:
+          type: boolean
+    SortObject:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean

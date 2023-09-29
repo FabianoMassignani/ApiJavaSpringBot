@@ -1,30 +1,33 @@
 version: "3.9"
-#version: '5'
 
 services:
-  mariaDB:
-    container_name: mariadb
-    image: mariadb:latest
-    restart: always
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
     ports:
-      - 3306:3306
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+    # networks:
+    #   - mongo-compose-network
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: db_agencia
+      MYSQL_DATABASE: root
+    ports:
+      - "3306:3306"
     volumes:
-      - ./mariadb:/var/lib/mysql
+      - mariadb:/var/lib/mysql
     # networks:
-    #   - backend
-  # commerce-api:
-  #   name: commerce-api
-  #   build: .
-  #   container_name: commerce-api
-  #   restart: always
-  #   ports:
-  #     - 3000:3000
-    
+    #   - mariadb-compose-network
 
-
-
-
+volumes:
+  mongodb:
+  mariadb:
+ 
 
