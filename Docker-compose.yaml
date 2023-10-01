@@ -3,15 +3,15 @@ version: "3.9"
 services:
   mongodb:
     image: mongo:latest
+    restart: unless-stopped
+    env_file: ./.env
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     ports:
-      - "27017:27017"
+      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     volumes:
       - mongodb:/data/db
-    # networks:
-    #   - mongo-compose-network
 
   mariadb:
     image: mariadb:latest
@@ -23,11 +23,38 @@ services:
       - "3306:3306"
     volumes:
       - mariadb:/var/lib/mysql
-    # networks:
-    #   - mariadb-compose-network
+
+  app:
+    depends_on:
+      - mongodb
+    build: ./node-api
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - DB_HOST=mongodb
+      - DB_USER=$MONGODB_USER
+      - DB_PASSWORD=$MONGODB_PASSWORD
+      - DB_NAME=$MONGODB_DATABASE
+      - DB_PORT=$MONGODB_DOCKER_PORT
+    stdin_open: true
+    tty: true
 
 volumes:
   mongodb:
-  mariadb:
- 
+  # mariadb:
 
+# docker exec -it mongodb mongo
+# use fabiano
+# db.createUser({
+#   user: "root",
+#   pwd: "root",
+#   roles: ["readWrite", "dbAdmin"]
+# })
+
+#docker run --name mariadb -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d docker.io/library/mariadb
+#docker exec -it mariadb bash
+# apt-get update
+# apt-get install mysql-server
+#mysql -u root -p

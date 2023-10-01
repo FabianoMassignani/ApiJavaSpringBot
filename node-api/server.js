@@ -9,7 +9,7 @@ const app = express();
 require("dotenv/config");
 
 //const authJwt = require('./helpers/jwt');
-const errorHandler = require("./helpers/error-handler");
+//const errorHandler = require("./helpers/error-handler");
 
 app.use(cors());
 app.options("*", cors());
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(morgan("tiny"));
 //app.use(authJwt());
 app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
-app.use(errorHandler);
+//app.use(errorHandler);
 
 const api = process.env.API_URL;
 const categoriesRoute = require("./routes/categories");
@@ -35,7 +35,7 @@ app.use(`${api}/categories`, categoriesRoute);
 app.use(`${api}/users`, userRoute);
 app.use(`${api}/orders`, orderRoute);
 
-const dbConfig = require("./config/database.config.js");
+const dbConfig = require("../node-api/app/config/database.config.js");
 
 mongoose.Promise = global.Promise;
 
@@ -54,6 +54,6 @@ mongoose
   });
 
 // listen for requests
-app.listen(3000, () => {
+app.listen(3002, () => {
   console.log("Server is listening on port 3000");
 });
