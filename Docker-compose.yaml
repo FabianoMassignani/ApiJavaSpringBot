@@ -3,6 +3,7 @@ version: "3.9"
 services:
   mongodb:
     image: mongo:latest
+    container_name: mongodb
     restart: unless-stopped
     env_file: ./.env
     environment:
@@ -13,20 +14,21 @@ services:
     volumes:
       - mongodb:/data/db
 
-  mariadb:
-    image: mariadb:latest
-    container_name: mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: root
-    ports:
-      - "3306:3306"
-    volumes:
-      - mariadb:/var/lib/mysql
+  # mariadb:
+  #   image: mariadb:latest
+  #   container_name: mariadb
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: root
+  #   ports:
+  #     - $MARIADB_LOCAL_PORT:$MARIADB_DOCKER_PORT
+  #   volumes:
+  #     - mariadb:/var/lib/mysql
 
   app:
     depends_on:
       - mongodb
+    container_name: node-api
     build: ./node-api
     restart: unless-stopped
     env_file: ./.env
@@ -43,15 +45,10 @@ services:
 
 volumes:
   mongodb:
-  # mariadb:
+  #mariadb:
 
-# docker exec -it mongodb mongo
-# use fabiano
-# db.createUser({
-#   user: "root",
-#   pwd: "root",
-#   roles: ["readWrite", "dbAdmin"]
-# })
+
+
 
 #docker run --name mariadb -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d docker.io/library/mariadb
 #docker exec -it mariadb bash

@@ -1,4 +1,4 @@
-FROM node:17
+FROM node:lastest
 
 WORKDIR /node-api
 COPY package.json .
