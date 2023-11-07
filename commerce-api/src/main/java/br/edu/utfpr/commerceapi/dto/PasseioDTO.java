@@ -1,6 +1,5 @@
 package br.edu.utfpr.commerceapi.dto;
 
-import br.edu.utfpr.commerceapi.models.Avaliacao;
 import br.edu.utfpr.commerceapi.models.Reserva;
 import jakarta.validation.constraints.NotBlank;
 import java.util.List;
@@ -51,5 +50,5 @@ public class PasseioDTO {
   private String observacao;
 
   private List<Reserva> reservas;
-  private List<Avaliacao> avaliacoes;
+  // private List<Avaliacao> avaliacoes;
 }

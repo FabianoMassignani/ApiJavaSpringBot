@@ -59,6 +59,6 @@ public class Passeio extends BaseEntity {
   @OneToMany(mappedBy = "passeio")
   private List<Reserva> reservas;
 
-  @OneToMany(mappedBy = "passeio")
-  private List<Avaliacao> avaliacoes;
+  // @OneToMany(mappedBy = "passeio")
+  // private List<Avaliacao> avaliacoes;
 }

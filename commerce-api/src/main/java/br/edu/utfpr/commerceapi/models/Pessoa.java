@@ -55,8 +55,8 @@ public class Pessoa extends BaseEntity implements UserDetails {
   @ManyToMany(mappedBy = "pessoas")
   private List<Reserva> reservas;
 
-  @OneToMany(mappedBy = "pessoa")
-  private List<Avaliacao> avaliacoes;
+  // @OneToMany(mappedBy = "pessoa")
+  // private List<Avaliacao> avaliacoes;
 
   @Override
   @JsonIgnore

@@ -28,7 +28,7 @@ public class AuthController {
 
     var now = Instant.now();
 
-    var jwt = jwtUtil.generateToken(payload, "ThiagoGay", 3600);
+    var jwt = jwtUtil.generateToken(payload, "secret", 3600);
 
     var res = new HashMap<String, Object>();
     res.put("token", jwt);
