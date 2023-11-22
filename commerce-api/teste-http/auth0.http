@@ -1,0 +1,13 @@
+@URL_BASE=http://localhost:8080
+
+###Obter todos os pacotes
+GET {{URL_BASE}}/auth
+
+### Cadastrar 1 usuário
+POST {{URL_BASE}}/auth
+Content-Type: application/json
+
+{
+    "username" : "douglas.marcondes@gmail.com",
+    "password" : "medianeira1234"
+}

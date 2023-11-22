@@ -1,4 +1,4 @@
-package br.edu.utfpr.commerceapi.security;
+ package br.edu.utfpr.commerceapi.security;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -38,6 +38,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         final var authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
+        System.out.println(authHeader);
+
         if (!Objects.isNull(authHeader) && !authHeader.isBlank() && authHeader.startsWith("Bearer ")) {
             var jwt = authHeader.substring(7);
 
@@ -47,6 +49,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 try {
                     String email = jwtUtil.validateTokenAndRetrieveSubject(jwt, jwtSecret);
                     UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+                    System.out.println(userDetails);
 
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email,
                             userDetails.getPassword(), userDetails.getAuthorities());

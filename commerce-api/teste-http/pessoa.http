@@ -1,0 +1,52 @@
+@URL_BASE=http://localhost:8080
+
+@TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImRvdWdsYXMubWFyY29uZGVzQGdtYWlsLmNvbSIsImlhdCI6MTY5NTM0MzM5MCwiZXhwIjoxNjk1MzQ2OTkwLCJpc3MiOiJVVEZQUiJ9.JlpWkYwdu5wpx3uLgveafdqBJqX1WTBTznIYCG8J2h4
+
+
+###Obter todas as pessoas
+GET {{URL_BASE}}/pessoa
+Authorization: Bearer {{TOKEN}}
+
+
+
+###Obter todas as pessoas por pagina
+GET {{URL_BASE}}/pessoa/pages?size=20&page=0&sort=email&direction=DESC
+Authorization: Bearer {{TOKEN}}
+
+###Obter uma pessoa
+GET {{URL_BASE}}/pessoa/1b699bd6-f2af-41ab-8bdf-22d00b0c1fe0
+
+### Cadastrar 1 pessoa
+POST {{URL_BASE}}/pessoa
+Content-Type: application/json
+
+{
+    "nome": "Douglas Marcondes",
+    "email": "douglas.marcondes@gmail.com",
+    "telefone": "+5545998217562",
+    "aniversario": "1991-03-04",
+    "identificacao": "cliente",
+    "senha": "medianeira1234"
+}
+
+### Atualizar 1 pessoa
+PUT {{URL_BASE}}/pessoa/071b699bd6-f2af-41ab-8bdf-22d00b0c1fe0
+Content-Type: application/json
+
+{
+    "nome": "Douglas Marcondes",
+    "email": "douglasc@alunos.utfpr.edu.br",
+    "telefone": "+5545998217562",
+    "aniversario": "1991-03-04",
+    "identificacao": "admnistrador",
+    "senha": "natal123"
+}
+
+
+
+### Deletar 1 pessoa
+DELETE {{URL_BASE}}/pessoa/1b699bd6-f2af-41ab-8bdf-22d00b0c1fe0
+
+{
+
+}

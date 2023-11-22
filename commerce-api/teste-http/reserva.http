@@ -1,0 +1,39 @@
+@URL_BASE=http://localhost:8080
+
+###Obter todas as reservas
+GET {{URL_BASE}}/reserva
+
+###Obter todas as pessoas por pagina
+GET {{URL_BASE}}/reserva/pages?size=20&page=0&sort=data&direction=DESC
+
+###Obter uma reserva
+GET {{URL_BASE}}/reserva/07f609d7-a8ad-49e0-bc87-bdae624ec20b
+
+### Cadastrar 1 reserva
+POST {{URL_BASE}}/reserva
+Content-Type: application/json
+
+{
+    "pacote" : { "id" : "e8f17ea0-6bcd-4275-b01f-dcb74fd75de1"},
+    "pessoa" : { "id" : "b12c2a76-da14-4277-a62b-b81ea4d52684"},
+    "data"   : "2023-09-15T22:24:00"
+}
+
+### Atualizar 1 reserva
+PUT {{URL_BASE}}/reserva/07d51ac6-9f73-43da-8725-ae2edc4d458d
+Content-Type: application/json
+
+{
+    "pacote" : { "id" : ""},
+    "pessoa" : { "id" : ""},
+    "data"   : "2023-09-15T22:24:00"
+}
+
+
+
+### Deletar 1 reserva
+DELETE {{URL_BASE}}/reserva/5205eefe-afa0-4885-bbaa-ab2625c88cce
+
+{
+
+}

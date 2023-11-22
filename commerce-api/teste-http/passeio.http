@@ -1,0 +1,49 @@
+@URL_BASE=http://localhost:8080
+
+###Obter todas os passeios
+GET {{URL_BASE}}/passeio
+
+###Obter os passeios por pagina
+GET {{URL_BASE}}/passeio/pages?size=20&page=0&sort=destino&direction=DESC
+
+###Obter um passeio
+GET {{URL_BASE}}/passeio/00c3a69e-8bd9-4b79-b312-a62944862f7b
+
+### Cadastrar 1 passeio
+POST {{URL_BASE}}/passeio
+Content-Type: application/json
+
+{
+    "destino": "Medianeira",
+    "itinerario": "Morro da Salete, UTFPR, Castelinho e Califfas",
+    "preco": "500.00"
+}
+
+### Cadastrar outro passeio
+POST {{URL_BASE}}/passeio
+Content-Type: application/json
+
+{
+    "destino": "Resende",
+    "itinerario": "Pico das agulhas negras, Usina do Funil, Parque nacional do itatiaia",
+    "preco": "1500.00"
+}
+
+### Atualizar 1 passeio
+PUT {{URL_BASE}}/passeio/00c3a69e-8bd9-4b79-b312-a62944862f7b
+Content-Type: application/json
+
+{
+    "destino": "Medianeira",
+    "itinerario": "Espigão do Norte, UTFPR, Castelinho e Califfas",
+    "preco": "550.00"
+}
+
+
+
+### Deletar 1 passeio
+DELETE {{URL_BASE}}/passeio/00c3a69e-8bd9-4b79-b312-a62944862f7b
+
+{
+
+}

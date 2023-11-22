@@ -1,0 +1,35 @@
+@URL_BASE=http://localhost:8080
+
+###Obter todos os pagamentos
+GET {{URL_BASE}}/pagamento
+
+###Obter todos os pagamentos por pagina
+GET {{URL_BASE}}/pagamento/pages?size=20&page=0&sort=id&direction=DESC
+
+###Obter uma pagamento
+GET {{URL_BASE}}/pagamento/42c571c6-41d6-4f5e-9f4a-96600512d3f1
+
+### Cadastrar 1 pagamento
+POST {{URL_BASE}}/pagamento
+Content-Type: application/json
+
+{
+    "valor" : "1000.00",
+    "reserva" : { "id" : "815027a8-b7f6-45a5-ad18-7d9efba8318b"}
+}
+
+### Atualizar 1 pagamento
+PUT {{URL_BASE}}/pagamento/70c6a5c9-4a69-463e-a570-869c81bf765a
+Content-Type: application/json
+
+{
+    "valor" : "999.00",
+    "reserva" : { "id" : "2f49cd75-c42c-4209-aa08-c5ae39bb2682"}
+}
+
+### Deletar 1 pagamento
+DELETE {{URL_BASE}}/pagamento/42c571c6-41d6-4f5e-9f4a-96600512d3f1
+
+{
+
+}
