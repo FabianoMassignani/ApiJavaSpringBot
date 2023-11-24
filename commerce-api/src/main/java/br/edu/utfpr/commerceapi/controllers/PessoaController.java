@@ -28,15 +28,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import org.springframework.web.bind.annotation.*;
 
 import br.edu.utfpr.commerceapi.dto.PessoaDTO;
 import br.edu.utfpr.commerceapi.models.Pessoa;
 import br.edu.utfpr.commerceapi.repositories.PessoaRepository;
 import jakarta.validation.Valid;
-import br.edu.utfpr.commerceapi.security.JwtUtil;
+
 
 @RestController
 @RequestMapping("/pessoa")
