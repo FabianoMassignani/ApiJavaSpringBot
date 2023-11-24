@@ -28,62 +28,62 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.utfpr.commerceapi.dto.ReservaDTO;
-import br.edu.utfpr.commerceapi.models.Reserva;
-import br.edu.utfpr.commerceapi.repositories.ReservaRepository;
+import br.edu.utfpr.commerceapi.dto.PacoteDTO;
+import br.edu.utfpr.commerceapi.models.Pacote;
+import br.edu.utfpr.commerceapi.repositories.PacoteRepository;
 
 @RestController
-@RequestMapping("/reserva")
-public class ReservaController {
+@RequestMapping("/pacote")
+public class PacoteController {
 
     @Autowired
-    ReservaRepository reservaRepository;
+    PacoteRepository pacoteRepository;
 
-    // Obter todas as reservas do banco
+    // Obter todos os pacotes do banco
     @GetMapping(value = { "", "/" })
-    public List<Reserva> getAll() {
-        return reservaRepository.findAll();
+    public List<Pacote> getAll() {
+        return pacoteRepository.findAll();
     }
 
     // Obter todas as reservas de forma paginada
     @GetMapping("/pages")
-    public ResponseEntity<Page<Reserva>> getAllPage(
-            @PageableDefault(page = 0, size = 10, direction = Sort.Direction.ASC) Pageable pageable) {
-        return ResponseEntity.ok().body(reservaRepository.findAll(pageable));
+    public ResponseEntity<Page<Pacote>> getAllPage(
+            @PageableDefault(page = 0, size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable) {
+        return ResponseEntity.ok().body(pacoteRepository.findAll(pageable));
     }
 
-    // Obter um reserva por ID
+    // Obter um pacote por ID
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable String id) {
-        Optional<Reserva> reservaOpt = reservaRepository
+        Optional<Pacote> pacoteOpt = pacoteRepository
                 .findById(UUID.fromString(id));
 
-        return reservaOpt.isPresent()
-                ? ResponseEntity.ok(reservaOpt.get())
+        return pacoteOpt.isPresent()
+                ? ResponseEntity.ok(pacoteOpt.get())
                 : ResponseEntity.notFound().build();
     }
 
-    // Inserir 1 reserva
+    // Inserir 1 pacote
     @PostMapping("")
-    public ResponseEntity<Object> create(@RequestBody ReservaDTO reservaDTO) {
-        var res = new Reserva(); // reserva que será persistido no DB
-        BeanUtils.copyProperties(reservaDTO, res);
+    public ResponseEntity<Object> create(@RequestBody PacoteDTO pacoteDTO) {
+        var pac = new Pacote(); // pacote que será persistido no DB
+        BeanUtils.copyProperties(pacoteDTO, pac);
 
         try {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body(reservaRepository.save(res));
+                    .body(pacoteRepository.save(pac));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body("Falha ao criar reserva");
+                    .body("Falha ao criar pacote");
         }
     }
 
-    // Atualizar 1 reserva por ID
+    // Atualizar 1 pacote por ID
     @PutMapping("/{id}")
-    ResponseEntity<Object> update(@PathVariable String id, @RequestBody ReservaDTO reservaDTO) {
+    ResponseEntity<Object> update(@PathVariable String id, @RequestBody PacoteDTO pacoteDTO) {
         UUID uuid;
         try {
             uuid = UUID.fromString(id);
@@ -93,23 +93,23 @@ public class ReservaController {
                     .body("Formato de UUID inválido");
         }
 
-        // Buscando o reserva no banco de dados
-        var reserva = reservaRepository.findById(uuid);
+        // Buscando o pacote no banco de dados
+        var pacote = pacoteRepository.findById(uuid);
 
         // Verifica se ele existe
-        if (reserva.isEmpty())
+        if (pacote.isEmpty())
             return ResponseEntity
                     .notFound()
                     .build();
 
-        var reservaToUpdate = reserva.get();
-        BeanUtils.copyProperties(reservaDTO, reservaToUpdate);
-        reservaToUpdate.setAtualizado_em(LocalDateTime.now());
+        var pacoteToUpdate = pacote.get();
+        BeanUtils.copyProperties(pacoteDTO, pacoteToUpdate);
+        pacoteToUpdate.setAtualizado_em(LocalDateTime.now());
 
         try {
             return ResponseEntity
                     .ok()
-                    .body(reservaRepository.save(reservaToUpdate));
+                    .body(pacoteRepository.save(pacoteToUpdate));
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
@@ -117,7 +117,7 @@ public class ReservaController {
         }
     }
 
-    // Deletar 1 reserva por ID
+    // Deletar 1 pacote por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable String id) {
 
@@ -131,16 +131,16 @@ public class ReservaController {
         }
 
         // Buscando o passeio no banco de dados
-        var reserva = reservaRepository.findById(uuid);
+        var pacote = pacoteRepository.findById(uuid);
 
         // Verifica se ele existe
-        if (reserva.isEmpty())
+        if (pacote.isEmpty())
             return ResponseEntity
                     .notFound()
                     .build();
 
         try {
-            reservaRepository.delete(reserva.get());
+            pacoteRepository.delete(pacote.get());
 
             return ResponseEntity
                     .ok()

@@ -1,4 +1,4 @@
- package br.edu.utfpr.commerceapi.security;
+package br.edu.utfpr.commerceapi.security;
 
 import java.io.IOException;
 import java.util.Objects;

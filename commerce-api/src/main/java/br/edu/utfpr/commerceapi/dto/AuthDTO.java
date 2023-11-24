@@ -1,7 +1,6 @@
 package br.edu.utfpr.commerceapi.dto;
 
- 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,12 +10,13 @@ import lombok.ToString;
 @Setter
 @ToString
 public class AuthDTO {
+    
+    @NotBlank
+    @Size(min = 3)
+    public String username;
 
-  @NotNull
-  @Size(min = 6)
-  public String username;
+    @NotBlank
+    @Size(min = 3)
+    public String password;
 
-  @NotNull
-  @Size(min = 6)
-  public String password;
 }

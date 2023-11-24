@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.edu.utfpr.commerceapi.models.Passeio;
 
-public interface PasseioRepository extends JpaRepository<Passeio, UUID> {
-    // Métodos personalizados de consulta podem ser adicionados aqui, se necessário.
+public interface PasseioRepository extends JpaRepository <Passeio, UUID>{
+    
 }

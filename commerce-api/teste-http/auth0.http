@@ -8,6 +8,6 @@ POST {{URL_BASE}}/auth
 Content-Type: application/json
 
 {
-    "username" : "douglas.marcondes@gmail.com",
+    "username" : "fabiano-smi@gmail.com",
     "password" : "medianeira1234"
 }

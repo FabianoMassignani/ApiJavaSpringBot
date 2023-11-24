@@ -55,6 +55,7 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/passeio").permitAll()
                 .requestMatchers(HttpMethod.GET, "/pacote").permitAll()
                 .requestMatchers(HttpMethod.GET, "/reserva").authenticated()
+               
                 .anyRequest().authenticated();
 
         // Add JWT token filter

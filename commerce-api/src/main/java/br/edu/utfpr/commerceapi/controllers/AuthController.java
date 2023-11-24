@@ -33,6 +33,7 @@ public class AuthController {
         //Dados do usuário (Payload)
         var payload = new HashMap<String, Object>();
         payload.put("username", authDTO.username);
+        
 
         var now = Instant.now();
 
