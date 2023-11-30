@@ -3,6 +3,8 @@ package br.edu.utfpr.commerceapi.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.checkerframework.checker.units.qual.C;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,21 +26,21 @@ import lombok.ToString;
 @Entity
 @Table(name = "tb_pacote")
 public class Pacote extends BaseEntity {
-    
-    //@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "pacote")
-    //private List<Reserva> reservas = new ArrayList<Reserva>();
 
-    //@ManyToOne
-    //@JoinColumn(name = "pacote_id")
-    //private Passeio passeio;
+    @Column(name = "nome")
+    private String nome;
 
     @Column(name = "preco")
     private Double preco;
 
+    @Column(name = "ativo", nullable = false)
+    private boolean ativo;
+
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "pacote_id")
-    //@JsonIgnore
-    
+    // @JsonIgnore
+
+    @Column(name = "passeios")
     private List<Passeio> passeios = new ArrayList<>();
-    
+
 }

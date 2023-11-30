@@ -18,10 +18,16 @@ import lombok.ToString;
 @ToString
 
 public class PacoteDTO {
-    
+    @NotBlank
+    private String nome;
+
     @NotBlank
     private double preco;
 
     @NotBlank
+    private boolean ativo;
+
+    @NotBlank
     private List<Passeio> passeios = new ArrayList<>();
+
 }

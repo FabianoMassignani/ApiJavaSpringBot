@@ -27,8 +27,7 @@ public class AuthController {
 
     @PostMapping
     public ResponseEntity<Object> auth(@Valid @RequestBody AuthDTO authDTO){
-        
-        System.out.println(authDTO);
+ 
 
         //Dados do usuário (Payload)
         var payload = new HashMap<String, Object>();

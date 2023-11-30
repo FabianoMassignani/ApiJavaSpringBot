@@ -55,8 +55,8 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/passeio").permitAll()
                 .requestMatchers(HttpMethod.GET, "/pacote").permitAll()
                 .requestMatchers(HttpMethod.GET, "/reserva").authenticated()
-               
-                .anyRequest().authenticated();
+                .requestMatchers(HttpMethod.GET, "/pessoa").permitAll()
+                 .anyRequest().authenticated();
 
         // Add JWT token filter
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

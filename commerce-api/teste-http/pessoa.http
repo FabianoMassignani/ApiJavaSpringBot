@@ -15,7 +15,8 @@ GET {{URL_BASE}}/pessoa/pages?size=20&page=0&sort=email&direction=DESC
 Authorization: Bearer {{TOKEN}}
 
 ###Obter uma pessoa
-GET {{URL_BASE}}/pessoa/1b699bd6-f2af-41ab-8bdf-22d00b0c1fe0
+GET {{URL_BASE}}/pessoa/e7ca0443-c64d-41e6-897d-fc97f2dd39e6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImZhYmlhbm8tc21pQGhvdG1haWwuY29tIiwiaWF0IjoxNzAwODQ2MjM4LCJleHAiOjE3MDA4NDk4MzgsImlzcyI6IlVURlBSIn0.4k9AYPrLIJ-QiyIE1zy7se7aPsxsJQe5W2QNhcL8ZFU
 
 ### Cadastrar 1 pessoa
 POST {{URL_BASE}}/pessoa
@@ -45,8 +46,9 @@ Content-Type: application/json
 
 
 
-### Deletar 1 pessoa
-DELETE {{URL_BASE}}/pessoa/1b699bd6-f2af-41ab-8bdf-22d00b0c1fe0
+### Deletar 1 pesso
+DELETE {{URL_BASE}}/pessoa/e7ca0443-c64d-41e6-897d-fc97f2dd39e6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImZhYmlhbm8tc21pQGhvdG1haWwuY29tIiwiaWF0IjoxNzAwODQ2MjM4LCJleHAiOjE3MDA4NDk4MzgsImlzcyI6IlVURlBSIn0.4k9AYPrLIJ-QiyIE1zy7se7aPsxsJQe5W2QNhcL8ZFU
 
 {
 

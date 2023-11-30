@@ -19,9 +19,15 @@ import lombok.ToString;
 @Table(name = "tb_passeio")
 public class Passeio extends BaseEntity {
 
+    @Column(name = "nome", length = 150, nullable = false)
+    private String nome;
+
+    @Column(name = "origem", length = 150, nullable = false)
+    private String origem;
+
     @Column(name = "destino", length = 150, nullable = false)
     private String destino;
-    
+
     @Column(name = "descricao", length = 300)
     private String descricao;
 
@@ -31,10 +37,7 @@ public class Passeio extends BaseEntity {
     @Column(name = "valor", nullable = false)
     private double valor;
 
-    @Column(name = "itinerario", length = 150, nullable = false)
-    private String itinerario;
-
-    @Column(name = "quantidade_maxima_pessoas", nullable = false)
+    @Column(name = "quantidadeMaximaPessoas", nullable = false)
     private int quantidadeMaximaPessoas;
 
 }

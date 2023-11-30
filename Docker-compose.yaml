@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mariadb:
-    image: mariadb:latest
+    image: mariadb
     container_name: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -21,4 +21,7 @@ volumes:
 #docker exec -it mariadb bash
 # apt-get update
 # apt-get install mysql-server
-#mysql -u root -p
+# mysql -u root -p
+# DROP DATABASE db_agencia;
+# CREATE DATABASE db_agencia;
+
