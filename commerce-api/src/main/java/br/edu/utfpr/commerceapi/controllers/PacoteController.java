@@ -66,6 +66,7 @@ public class PacoteController {
     // Inserir 1 pacote
     @PostMapping("")
     public ResponseEntity<Object> create(@RequestBody PacoteDTO pacoteDTO) {
+        System.out.println("Received PacoteDTO: " + pacoteDTO);
         var pac = new Pacote(); // pacote que será persistido no DB
         BeanUtils.copyProperties(pacoteDTO, pac);
 
@@ -122,6 +123,7 @@ public class PacoteController {
     public ResponseEntity<Object> delete(@PathVariable String id) {
 
         UUID uuid;
+
         try {
             uuid = UUID.fromString(id);
         } catch (Exception e) {
@@ -134,7 +136,7 @@ public class PacoteController {
         var pacote = pacoteRepository.findById(uuid);
 
         // Verifica se ele existe
-        if (pacote.isEmpty())
+        if (!pacote.isPresent())
             return ResponseEntity
                     .notFound()
                     .build();

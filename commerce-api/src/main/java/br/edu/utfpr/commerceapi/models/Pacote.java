@@ -1,21 +1,14 @@
 package br.edu.utfpr.commerceapi.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.checkerframework.checker.units.qual.C;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,11 +29,6 @@ public class Pacote extends BaseEntity {
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "pacote_id")
-    // @JsonIgnore
-
-    @Column(name = "passeios")
+    @OneToMany(mappedBy = "pacote", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Passeio> passeios = new ArrayList<>();
-
 }

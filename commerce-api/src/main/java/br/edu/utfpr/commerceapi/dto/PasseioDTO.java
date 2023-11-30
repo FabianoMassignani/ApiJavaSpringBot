@@ -1,6 +1,7 @@
 package br.edu.utfpr.commerceapi.dto;
- 
+
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +14,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-
 public class PasseioDTO {
 
     @NotBlank(message = "O nome não pode estar em branco")
@@ -24,20 +24,19 @@ public class PasseioDTO {
     @Size(min = 2, max = 50)
     private String origem;
 
-    @NotBlank
+    @NotBlank(message = "O destino não pode estar em branco")
     @Size(min = 2, max = 50)
     private String destino;
 
     @NotBlank(message = "A descrição não pode estar em branco")
     private String descricao;
 
-    @NotBlank(message = "O status não pode estar em branco")
-    private boolean ativo;
+    @NotNull(message = "O status não pode estar em branco")
+    private Boolean ativo;
 
-    @NotBlank(message = "O valor não pode estar em branco")
-    private double valor;
+    @NotNull(message = "O valor não pode estar em branco")
+    private Double valor;
 
-    @NotBlank(message = "A quantidade máxima de pessoas não pode estar em branco")
-    private int quantidadeMaximaPessoas;
-
+    @NotNull(message = "A quantidade máxima de pessoas não pode estar em branco")
+    private Integer quantidadeMaximaPessoas;
 }

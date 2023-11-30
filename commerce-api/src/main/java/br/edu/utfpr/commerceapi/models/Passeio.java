@@ -1,8 +1,6 @@
 package br.edu.utfpr.commerceapi.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,4 +38,7 @@ public class Passeio extends BaseEntity {
     @Column(name = "quantidadeMaximaPessoas", nullable = false)
     private int quantidadeMaximaPessoas;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pacote_id")
+    private Pacote pacote;
 }
