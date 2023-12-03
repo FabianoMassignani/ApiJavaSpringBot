@@ -1,7 +1,8 @@
 @URL_BASE=http://localhost:8080
-
+@TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImNsaWVudGVAaG90bWFpbC5jb20iLCJpYXQiOjE3MDE2MDc1MzgsImV4cCI6MTcwMTYxMTEzOCwiaXNzIjoiVVRGUFIifQ.nDeAnkk-co--t66rFMaYfV5t6CiOYJ6AY8cN5vx79BA 
 ###Obter todas as reservas
 GET {{URL_BASE}}/reserva
+Authorization: Bearer {{TOKEN}}
 
 ###Obter todas as pessoas por pagina
 GET {{URL_BASE}}/reserva/pages?size=20&page=0&sort=data&direction=DESC
@@ -12,10 +13,11 @@ GET {{URL_BASE}}/reserva/07f609d7-a8ad-49e0-bc87-bdae624ec20b
 ### Cadastrar 1 reserva
 POST {{URL_BASE}}/reserva
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
-    "pacote" : { "id" : "e8f17ea0-6bcd-4275-b01f-dcb74fd75de1"},
-    "pessoa" : { "id" : "b12c2a76-da14-4277-a62b-b81ea4d52684"},
+    "pacote" : { "id" : "2a0a9ad0-8410-4993-b541-183fee6ae1cb"},
+    "pessoa" : { "id" : "e16b762b-ad6a-4006-b630-07d1ccb12494"},
     "data"   : "2023-09-15T22:24:00"
 }
 
@@ -32,8 +34,6 @@ Content-Type: application/json
 
 
 ### Deletar 1 reserva
-DELETE {{URL_BASE}}/reserva/5205eefe-afa0-4885-bbaa-ab2625c88cce
-
-{
-
-}
+DELETE {{URL_BASE}}/reserva/4f2b6a6b-0762-4df4-bab9-115d2768cad5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImNsaWVudGVAaG90bWFpbC5jb20iLCJpYXQiOjE3MDE2MDY1NTgsImV4cCI6MTcwMTYxMDE1OCwiaXNzIjoiVVRGUFIifQ.YAN2nlKGrcFP16J3vCBk5jDw4PMP_XZs3kpeP-b6YFU
+ 

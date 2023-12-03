@@ -21,20 +21,19 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "tb_reserva")
-public class Reserva  extends BaseEntity{
-    
-    @ManyToOne
-    @JoinColumn(name = "pacote_id")
-    private Pacote pacote;
-
-    @Column(name = "quantidade_pessoas", nullable = false)
-    private int quantidadePessoas;
-
-    @ManyToOne
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
+public class Reserva extends BaseEntity {
 
     @Column(name = "data")
     private LocalDateTime data;
 
+    @Column(name = "reservaAceita", nullable = false, columnDefinition = "boolean default false")
+    private boolean reservaAceita;
+
+    @ManyToOne
+    @JoinColumn(name = "pacote_id")
+    private Pacote pacote;
+
+    @ManyToOne
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
 }

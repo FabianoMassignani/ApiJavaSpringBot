@@ -35,10 +35,4 @@ public class Passeio extends BaseEntity {
     @Column(name = "valor", nullable = false)
     private double valor;
 
-    @Column(name = "quantidadeMaximaPessoas", nullable = false)
-    private int quantidadeMaximaPessoas;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pacote_id")
-    private Pacote pacote;
 }

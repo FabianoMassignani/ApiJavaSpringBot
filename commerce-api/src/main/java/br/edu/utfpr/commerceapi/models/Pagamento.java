@@ -18,6 +18,7 @@ public class Pagamento extends BaseEntity {
 
     @Column(name = "valor", nullable = false)
     private double valor;
+    
     @Column(name = "data_pagamento", nullable = false)
     private LocalDateTime dataPagamento;
 

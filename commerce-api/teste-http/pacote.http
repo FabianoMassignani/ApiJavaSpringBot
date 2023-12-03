@@ -1,4 +1,5 @@
 @URL_BASE=http://localhost:8080
+@TOKEN= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImZhYmlhbm8tc21pQGhvdG1haWwuY29tIiwiaWF0IjoxNzAxNTk3NzkwLCJleHAiOjE3MDE2MDEzOTAsImlzcyI6IlVURlBSIn0.U8R---AP-3OIG7Zw2pF8OANjlRpwzknfxCCVcTw2bEw
 
 ###Obter todos os pacotes
 GET {{URL_BASE}}/pacote
@@ -7,19 +8,35 @@ GET {{URL_BASE}}/pacote
 GET {{URL_BASE}}/pacote/pages?size=20&page=0&sort=id&direction=DESC
 
 ###Obter uma pacote
-GET {{URL_BASE}}/pacote/547896d3-ec00-4898-bc24-9e44945894bb
+GET {{URL_BASE}}/pacote/61453f1d-4d47-434f-9a36-fc3bdf596cd7
+Authorization: Bearer {{TOKEN}}
 
 ### Cadastrar 1 pacote
 POST {{URL_BASE}}/pacote
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
-    "preco"    : 1000.00,
-    "passeios" : [
-        { "id" : "95e84b91-a075-4377-acf3-757a9d39c488" },
-        { "id" : "c43d25d6-1be3-41fd-b5fb-e96977c151d5" }
-    ]
+  "nome": "Pacote de Viagem",
+  "preco": 1500.0,
+  "ativo": true,
+  "passeios": [
+    {
+        "id": "b94accbf-decd-4aac-ab7a-5f8f0c38e939",
+      "nome": "Passeio X",
+      "origem": "Cidade X",
+      "destino": "Cidade Y",
+      "descricao": "Descrição do Passeio X",
+      "ativo": true,
+      "valor": 200.0,
+      "quantidadeMaximaPessoas": 10
+    } 
+   
+  ]
 }
+
+
+
 
 ### Atualizar 1 pacote
 PUT {{URL_BASE}}/pacote/547896d3-ec00-4898-bc24-9e44945894bb

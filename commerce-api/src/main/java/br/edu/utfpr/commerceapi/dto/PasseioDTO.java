@@ -37,6 +37,4 @@ public class PasseioDTO {
     @NotNull(message = "O valor não pode estar em branco")
     private Double valor;
 
-    @NotNull(message = "A quantidade máxima de pessoas não pode estar em branco")
-    private Integer quantidadeMaximaPessoas;
 }

@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   mariadb:
-    image: mariadb:latest
+    image: mariadb
     container_name: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: root

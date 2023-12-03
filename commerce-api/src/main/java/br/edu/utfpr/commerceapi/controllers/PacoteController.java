@@ -40,9 +40,16 @@ public class PacoteController {
     PacoteRepository pacoteRepository;
 
     // Obter todos os pacotes do banco
+    // @GetMapping(value = { "", "/" })
+    // public List<Pacote> getAll() {
+    //     return pacoteRepository.findAll();
+    // }
+
     @GetMapping(value = { "", "/" })
-    public List<Pacote> getAll() {
-        return pacoteRepository.findAll();
+    public ResponseEntity<List<Pacote>> getAllPacotesWithPasseios() {
+        List<Pacote> pacotes = pacoteRepository.findAll();
+        System.out.println("Pacotes: " + pacotes);
+        return new ResponseEntity<>(pacotes, HttpStatus.OK);
     }
 
     // Obter todas as reservas de forma paginada

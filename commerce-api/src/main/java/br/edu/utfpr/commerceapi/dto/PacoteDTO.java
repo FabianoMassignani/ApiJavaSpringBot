@@ -27,7 +27,5 @@ public class PacoteDTO {
     @NotBlank
     private boolean ativo;
 
-    @NotBlank
     private List<Passeio> passeios = new ArrayList<>();
-
 }

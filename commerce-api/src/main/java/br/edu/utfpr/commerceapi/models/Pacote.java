@@ -29,6 +29,8 @@ public class Pacote extends BaseEntity {
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
 
-    @OneToMany(mappedBy = "pacote", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "pacote_id")
     private List<Passeio> passeios = new ArrayList<>();
+
 }
