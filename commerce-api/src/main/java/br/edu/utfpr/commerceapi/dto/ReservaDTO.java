@@ -29,4 +29,7 @@ public class ReservaDTO{
     @NotBlank(message = "O data da reserva não pode estar em branco")
     @FutureOrPresent
     private LocalDateTime data;
+
+    @NotBlank(message = "O status da reserva não pode estar em branco")
+    private boolean reservaAceita;
 }
