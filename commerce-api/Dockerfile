@@ -1,3 +1,14 @@
+FROM mariadb:latest
+
+ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_DATABASE=db_agencia
+ENV MYSQL_USER=root
+ENV MYSQL_PASSWORD=root
+
+COPY ./db/ /docker-entrypoint-initdb.d/
+
+EXPOSE 3306
+
 FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
