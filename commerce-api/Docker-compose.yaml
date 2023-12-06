@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_agencia
+    ports:
+      - 3306:3306
+    volumes:
+      - mariadb:/var/lib/mysql
+
+  spring-boot-app:
+      build:
+        context: ./backend
+        dockerfile: Dockerfile
+      ports:
+        - "8080:8080"
+      depends_on:
+        - mariadb
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/db_agencia
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: root 
+
+volumes: 
+  mariadb:
+ 
