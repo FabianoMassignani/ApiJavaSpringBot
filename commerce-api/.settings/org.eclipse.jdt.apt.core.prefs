@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+org.eclipse.jdt.apt.genSrcDir=bin/generated-sources/annotations
+org.eclipse.jdt.apt.genTestSrcDir=bin/generated-test-sources/annotations
