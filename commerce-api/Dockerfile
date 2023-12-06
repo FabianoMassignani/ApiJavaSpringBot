@@ -1,15 +1,14 @@
-FROM openjdk:8-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine
 
-WORKDIR "/home"
+WORKDIR /app
 
 COPY . .
 
-RUN apk add maven
+ENV SPRING_DATASOURCE_URL=jdbc:mariadb://localhost:3306/db_agencia
 
-RUN mvn clean package
-
-WORKDIR "/home/demo"
+RUN chmod +x gradlew
+RUN ./gradlew build -x test
 
 EXPOSE 8080
 
-CMD [ "java", "-jar", "/home/demo/target/demo-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","build/libs/commerce-api-0.0.1-SNAPSHOT.jar"]
