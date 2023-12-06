@@ -5,7 +5,7 @@ ENV MYSQL_DATABASE=db_agencia
 ENV MYSQL_USER=root
 ENV MYSQL_PASSWORD=root
 
-COPY ./db/ /docker-entrypoint-initdb.d/
+ 
 
 EXPOSE 3306
 
