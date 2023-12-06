@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-# ENV SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/db_agencia
+ENV SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/db_fabiano
 
 RUN chmod +x gradlew
 RUN ./gradlew build -x test
