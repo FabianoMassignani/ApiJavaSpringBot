@@ -56,6 +56,7 @@
                     .requestMatchers(HttpMethod.GET, "/pacote").permitAll()
                     .requestMatchers(HttpMethod.GET, "/reserva").permitAll()
                     .requestMatchers(HttpMethod.GET, "/pessoa").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/pessoa/email").permitAll()
                     .requestMatchers(HttpMethod.GET, "/pagamento").permitAll()
                     
                     .anyRequest().authenticated();
