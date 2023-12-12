@@ -95,10 +95,7 @@ public class WebSecurityConfig {
     
         // Allow OPTIONS request
         config.addAllowedMethod(HttpMethod.OPTIONS);
-    
-        // Apply CORS configuration to specific paths
-        source.registerCorsConfiguration("/passeio/**", config);
-        source.registerCorsConfiguration("/reserva/**", config);
+
     
         return new CorsFilter(source);
     }
