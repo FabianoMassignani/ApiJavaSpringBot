@@ -92,7 +92,12 @@ public class WebSecurityConfig {
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
+    
+        // Allow OPTIONS request
+        config.addAllowedMethod(HttpMethod.OPTIONS);
+    
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+    
 }
