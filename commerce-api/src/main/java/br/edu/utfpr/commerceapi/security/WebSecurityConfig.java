@@ -90,6 +90,7 @@ public class WebSecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         //config.setAllowCredentials(true);
         config.addAllowedOrigin("*");
+        config.addAllowedOrigin("http://34.29.74.159");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
