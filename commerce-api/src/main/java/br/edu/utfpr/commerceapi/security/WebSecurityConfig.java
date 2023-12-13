@@ -86,7 +86,7 @@
             CorsConfiguration config = new CorsConfiguration();
             config.setAllowCredentials(true);
             config.addAllowedOrigin("http://34.29.74.159");
-            config.addAllowedOrigin("http://localhost");   
+            config.addAllowedOrigin("http://0.0.0.0/0");   
             config.addAllowedHeader("*");
             config.addAllowedMethod("*");
             config.addAllowedMethod(HttpMethod.OPTIONS);
