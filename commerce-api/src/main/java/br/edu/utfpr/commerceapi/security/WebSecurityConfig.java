@@ -85,8 +85,10 @@
             UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
             CorsConfiguration config = new CorsConfiguration();
             config.setAllowCredentials(true);
-            config.addAllowedOrigin("http://34.29.74.159");
+            // config.addAllowedOrigin("http://34.29.74.159");
             config.addAllowedOrigin("http://localhost/");
+            config.addAllowedOrigin("http://localhost:8080");
+            config.addAllowedOrigin("http://localhost");
             config.addAllowedHeader("*");
             config.addAllowedMethod("*");
             config.addAllowedMethod(HttpMethod.OPTIONS);
