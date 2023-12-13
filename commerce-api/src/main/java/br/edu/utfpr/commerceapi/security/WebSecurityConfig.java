@@ -78,13 +78,7 @@
             return authenticationConfiguration.getAuthenticationManager();
         }
 
-        // // Método ignora URL específicas
-        // @Bean // Ignora URL's específicas
-        // public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
-        // return web -> web.ignoring().requestMatchers("/auth");
-        // }
-
-        // Used by Spring Security if CORS is enabled.
+    
         
         @Bean
         public CorsFilter corsFilter() {
@@ -92,6 +86,7 @@
             CorsConfiguration config = new CorsConfiguration();
             config.setAllowCredentials(true);
             config.addAllowedOrigin("http://34.29.74.159");
+            config.addAllowedOrigin("http://localhost");   
             config.addAllowedHeader("*");
             config.addAllowedMethod("*");
             config.addAllowedMethod(HttpMethod.OPTIONS);
